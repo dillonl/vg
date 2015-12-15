@@ -1,0 +1,6 @@
+INCLUDE(CheckCSourceCompiles.cmake)
+INCLUDE(CheckCXXSourceCompiles.cmake)
+INCLUDE(FindPackageHandleStandardArgs.cmake)
+INCLUDE(FindPackageMessage.cmake)
+INCLUDE(CMakeParseArguments.cmake)
+INCLUDE(FindOpenMP.cmake)
