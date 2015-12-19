@@ -1,6 +1,7 @@
-INCLUDE(CheckCSourceCompiles.cmake)
-INCLUDE(CheckCXXSourceCompiles.cmake)
-INCLUDE(FindPackageHandleStandardArgs.cmake)
-INCLUDE(FindPackageMessage.cmake)
-INCLUDE(CMakeParseArguments.cmake)
-INCLUDE(FindOpenMP.cmake)
+INCLUDE(ExternalProject)
+message("OPENMP: ${OpenMP_FLAG_DETECTED}")
+IF (NOT OpenMP_FLAG_DETECTED)
+   INCLUDE(OpenMP.cmake)
+ENDIF()
+
+INCLUDE(Protobuf.cmake)

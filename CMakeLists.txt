@@ -25,7 +25,7 @@ INCLUDE_DIRECTORIES(src)
 
 # add subfolders
 ADD_SUBDIRECTORY(cmakefiles)
-ADD_SUBDIRECTORY(deps)
+#ADD_SUBDIRECTORY(deps)
 ADD_SUBDIRECTORY(src)
 #ADD_SUBDIRECTORY(test)
 
@@ -44,20 +44,21 @@ endif()
 set(CMAKE_BUILD_TYPE Debug) # uncomment this when you need a debug build
 
 IF (NOT OpenMP_FLAG_DETECTED)
-   INCLUDE_DIRECTORIES(${OPENMP_DIR})
+   
 ENDIF()
+INCLUDE_DIRECTORIES(${OPENMP_INCLUDE})
 
 #create binary
 add_executable(vg
   ${VG_TOOLS_SOURCES}
 )
 
-add_dependencies(vg openmp)
-
+add_dependencies(vg ${PROTOBUF_PROJECT} ${OPENMP_PROJECT} )
 
 # link libraries to executables
 target_link_libraries(vg
   ${VG_LIB}
+  ${OPENMP_LIB}
 #  fastahack_lib
 #  ${GSSW_LIB}
 )
