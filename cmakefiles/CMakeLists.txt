@@ -4,3 +4,4 @@ IF (NOT OpenMP_FLAG_DETECTED)
 ENDIF()
 
 INCLUDE(Protobuf.cmake)
+INCLUDE(Jansson.cmake)

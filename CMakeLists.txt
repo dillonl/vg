@@ -25,7 +25,7 @@ INCLUDE_DIRECTORIES(src)
 
 # add subfolders
 ADD_SUBDIRECTORY(cmakefiles)
-#ADD_SUBDIRECTORY(deps)
+ADD_SUBDIRECTORY(deps)
 ADD_SUBDIRECTORY(src)
 #ADD_SUBDIRECTORY(test)
 
@@ -59,7 +59,7 @@ add_dependencies(vg ${PROTOBUF_PROJECT} ${OPENMP_PROJECT} )
 target_link_libraries(vg
   ${VG_LIB}
   ${OPENMP_LIB}
+  ${JANSSON_LIB}
 #  fastahack_lib
 #  ${GSSW_LIB}
 )
-
