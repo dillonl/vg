@@ -47,7 +47,7 @@ message("fdfd: ${SOURCE_DIR} ${BINARY_DIR}")
 
 #LINK_DIRECTORIES(${BINARY_DIR}/runtime/src/)
 SET(JANSSON_LIB ${BINARY_DIR}/lib/libjansson.a CACHE INTERNAL "Jansson Lib")
-SET(JANSSON_INCLUDE ${SOURCE_DIR}/src/ ${SOURCE_DIR}/android/ CACHE INTERNAL "Jansson Include")
+SET(JANSSON_INCLUDE_DIR ${SOURCE_DIR}/src/ ${SOURCE_DIR}/android/ CACHE INTERNAL "Jansson Include")
 
 
 

@@ -36,7 +36,7 @@ set(VG_TOOLS_SOURCES
 	src/main.cpp
 )
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -msse4.1")
 if (NOT "${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang") # clang Doesnt use pthread
    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 endif()

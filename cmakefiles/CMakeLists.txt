@@ -5,3 +5,4 @@ ENDIF()
 
 INCLUDE(Protobuf.cmake)
 INCLUDE(Jansson.cmake)
+INCLUDE(LibDivSufSort.cmake)

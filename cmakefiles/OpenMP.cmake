@@ -45,6 +45,4 @@ ExternalProject_Get_Property(${OPENMP_PROJECT} BINARY_DIR)
 
 LINK_DIRECTORIES(${BINARY_DIR}/runtime/src/)
 SET(OPENMP_LIB libomp CACHE INTERNAL "OpenMP Lib")
-SET(OPENMP_INCLUDE ${BINARY_DIR}/runtime/src/ CACHE INTERNAL "Openmp Include")
-
-
+SET(OPENMP_INCLUDE_DIR ${BINARY_DIR}/runtime/src/ CACHE INTERNAL "Openmp Include")
