@@ -42,8 +42,8 @@ include(FindProtobuf)
         BUILD_IN_SOURCE 1
         INSTALL_COMMAND  ""
         CMAKE_CACHE_ARGS
-        -DCMAKE_C_COMPILER:STRING=${CMAKE_C_COMPILER}
-        -DCMAKE_CXX_COMPILER:STRING=${CMAKE_CXX_COMPILER}
+			-DCMAKE_C_COMPILER:STRING=${CMAKE_C_COMPILER}
+            -DCMAKE_CXX_COMPILER:STRING=${CMAKE_CXX_COMPILER}
     )
     
     ExternalProject_Get_Property(${PROTOBUF_PROJECT} INSTALL_DIR)
@@ -54,6 +54,23 @@ include(FindProtobuf)
     SET(PROTOBUF_LIBRARY ${SOURCE_DIR}/src/.libs/libprotobuf.a CACHE INTERNAL "ProtoBuf Lib")
     SET(PROTOBUF_INCLUDE_DIR ${SOURCE_DIR}/src/ CACHE INTERNAL "ProtoBuf Include")
 	SET(PROTOBUF_PROTOC_EXECUTABLE ${SOURCE_DIR}/src/protoc CACHE INTERNAL "ProtoBuf Executable")
+
+	add_custom_target(
+	   EmptyProtoBufProject ALL
+	   DEPENDS ${PROTOBUF_PROJECT}
+	)
+
+	file(GLOB ProtoFiles "${CMAKE_SOURCE_DIR}/src/*.proto")
+	PROTOBUF_GENERATE_CPP(PROTO_SRCS PROTO_HDRS ${ProtoFiles})
+
+	if (EXISTS "${PROTO_SRCS}")
+	   file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/cpp)
+	   get_filename_component(PROTO_SRC_NAME ${PROTO_SRCS} NAME)
+	   get_filename_component(PROTO_HDR_NAME ${PROTO_HDRS} NAME)
+
+	   file(RENAME ${PROTO_SRCS} ${CMAKE_CURRENT_BINARY_DIR}/cpp/${PROTO_SRC_NAME})
+	   file(RENAME ${PROTO_HDRS} ${CMAKE_CURRENT_BINARY_DIR}/cpp/${PROTO_HDR_NAME})
+	endif()
 #ENDIF()
 
 

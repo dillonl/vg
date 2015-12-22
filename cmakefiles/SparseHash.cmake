@@ -26,26 +26,29 @@
 
 # Setting up external library openmp
 
-SET(JANSSON_PROJECT jansson_project CACHE INTERNAL "jansson project name")
-SET(JANSSON_DIR ${CMAKE_BINARY_DIR}/externals/jansson CACHE INTERNAL "jansson project directory")
-SET(JANSSON_LIB)
-ExternalProject_Add(${JANSSON_PROJECT}
-	GIT_REPOSITORY https://github.com/akheron/jansson.git
+SET(SPARSEHASH_PROJECT sparsehash_project CACHE INTERNAL "sparsehash project name")
+SET(SPARSEHASH_DIR ${CMAKE_BINARY_DIR}/externals/sparsehash CACHE INTERNAL "sparsehash project directory")
+SET(SPARSEHASH_LIB)
+ExternalProject_Add(${SPARSEHASH_PROJECT}
+	GIT_REPOSITORY https://github.com/dillonl/sparsehash.git
 	GIT_TAG "master"
 	INSTALL_COMMAND ""
-	PREFIX ${JANSSON_DIR}
+    SOURCE_DIR ${SPARSEHASH_DIR}
+	CONFIGURE_COMMAND ./configure
+	BUILD_COMMAND "make" -j4
+	BUILD_IN_SOURCE 1
     CMAKE_CACHE_ARGS
         -DCMAKE_C_COMPILER:STRING=${CMAKE_C_COMPILER}
         -DCMAKE_CXX_COMPILER:STRING=${CMAKE_CXX_COMPILER}
 )
 
-ExternalProject_Get_Property(${JANSSON_PROJECT} INSTALL_DIR)
-ExternalProject_Get_Property(${JANSSON_PROJECT} SOURCE_DIR)
-ExternalProject_Get_Property(${JANSSON_PROJECT} BINARY_DIR)
+ExternalProject_Get_Property(${SPARSEHASH_PROJECT} INSTALL_DIR)
+ExternalProject_Get_Property(${SPARSEHASH_PROJECT} SOURCE_DIR)
+ExternalProject_Get_Property(${SPARSEHASH_PROJECT} BINARY_DIR)
 
 #LINK_DIRECTORIES(${BINARY_DIR}/runtime/src/)
-SET(JANSSON_LIB ${BINARY_DIR}/lib/libjansson.a CACHE INTERNAL "Jansson Lib")
-SET(JANSSON_INCLUDE_DIR ${SOURCE_DIR}/src/ ${SOURCE_DIR}/android/ CACHE INTERNAL "Jansson Include")
+#SET(SPARSEHASH_LIB ${BINARY_DIR}/lib/libjansson.a CACHE INTERNAL "sparsehash Lib")
+SET(SPARSEHASH_INCLUDE_DIR ${SOURCE_DIR}/src CACHE INTERNAL "sparsehash Include")
 
 
 

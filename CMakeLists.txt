@@ -46,7 +46,8 @@ set(CMAKE_BUILD_TYPE Debug) # uncomment this when you need a debug build
 IF (NOT OpenMP_FLAG_DETECTED)
    
 ENDIF()
-INCLUDE_DIRECTORIES(${OPENMP_INCLUDE})
+
+INCLUDE_DIRECTORIES(${OPENMP_INCLUDE} ${SRC_INCLUDE_DIRECTORIES})
 
 #create binary
 add_executable(vg

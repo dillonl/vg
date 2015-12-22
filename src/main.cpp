@@ -1863,8 +1863,9 @@ int main_sim(int argc, char** argv) {
     uniform_real_distribution<double> rprob(0, 1);
     uniform_int_distribution<int> rbase(0, 3);
 
-    function<string(const string&)> introduce_read_errors
-        = [&rng, &rprob, &rbase, &bases, base_error, indel_error](const string& perfect_read) {
+    //function<string(const string&)> introduce_read_errors
+    auto introduce_read_errors
+        = [&rng, &rprob, &rbase, &bases, base_error, indel_error](string& perfect_read) {
 
         if (base_error == 0 && indel_error == 0) return perfect_read;
         string read;
@@ -4134,7 +4135,10 @@ int main_map(int argc, char** argv) {
                 line.clear();
 #pragma omp critical (readq)
                 {
-                    more_data = std::getline(in,line);
+                    if (!std::getline(in,line)) // clang didn't like directly setting more_data to getline
+                    {
+                        more_data = false;
+                    }
                 }
                 if (!line.empty()) {
                     // Make an alignment
